@@ -3,6 +3,7 @@ import { ProofBar } from './sections/ProofBar'
 import { HowItWorks } from './sections/HowItWorks'
 import { Models } from './sections/Models'
 import { Features } from './sections/Features'
+import { DevExperience } from './sections/DevExperience'
 import { CommandPalette } from './components/CommandPalette'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <HowItWorks />
         <Models />
         <Features />
+        <DevExperience />
       </main>
       {/* Mounted once so ⌘K / Ctrl+K opens the palette anywhere on the page. */}
       <CommandPalette />
