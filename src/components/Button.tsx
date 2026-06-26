@@ -1,4 +1,5 @@
 import type { ReactNode, MouseEventHandler } from 'react'
+import { cx } from '../lib/cx'
 
 type Variant = 'primary' | 'outline' | 'ghost'
 
@@ -12,10 +13,6 @@ const baseClasses =
   'inline-flex items-center justify-center gap-2 rounded px-6 py-3 text-sm font-semibold ' +
   'transition-colors duration-200 focus-visible:outline focus-visible:outline-2 ' +
   'focus-visible:outline-accent-green outline-offset-2'
-
-function cx(...parts: Array<string | undefined>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 type ButtonProps = {
   children: ReactNode
