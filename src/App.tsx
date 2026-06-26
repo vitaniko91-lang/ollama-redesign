@@ -2,6 +2,7 @@ import { Hero } from './sections/Hero'
 import { ProofBar } from './sections/ProofBar'
 import { HowItWorks } from './sections/HowItWorks'
 import { Models } from './sections/Models'
+import { Features } from './sections/Features'
 import { CommandPalette } from './components/CommandPalette'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <ProofBar />
         <HowItWorks />
         <Models />
+        <Features />
       </main>
       {/* Mounted once so ⌘K / Ctrl+K opens the palette anywhere on the page. */}
       <CommandPalette />
