@@ -93,7 +93,7 @@ export function TokenStreamField() {
         vy: -rand(6, 17),
         size,
         glyph: spawnGlyph(),
-        baseAlpha: active ? rand(0.1, 0.15) : rand(0.04, 0.08),
+        baseAlpha: active ? rand(0.12, 0.18) : rand(0.06, 0.1),
         depth: rand(0.4, 1),
       }
     }
@@ -107,9 +107,10 @@ export function TokenStreamField() {
       // Resizing the bitmap clears all context state — re-establish it here.
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx!.textBaseline = 'middle'
-      // Scale to the viewport but keep large desktops from reading too sparse:
-      // ~104 tokens at 1440×900, ~40 on a phone — alive, never "matrix rain".
-      const count = Math.max(40, Math.min(120, Math.round((W * H) / 12500)))
+      // Scale to the viewport so the field reads as clearly alive on a large
+      // desktop without overcrowding a phone: ~144 tokens at 1440×900, ~40 on a
+      // phone (held by the floor). Still refined, never a "matrix rain" wall.
+      const count = Math.max(40, Math.min(170, Math.round((W * H) / 9000)))
       tokens = Array.from({ length: count }, () => makeToken(true))
     }
 
