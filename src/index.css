@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 body {
-  @apply bg-bg-primary text-text-primary font-sans antialiased;
+  @apply bg-bg-base text-text-paper font-sans antialiased;
+}
+
+/* Warm amber text selection — part of the duotone signature. */
+::selection {
+  background: rgba(232, 179, 57, 0.18);
 }
 
 /* Authentic terminal cursor: a crisp on/off blink (step-end), not a smooth
-   pulse. Solid by default so reduced-motion users still see the cursor. */
+   pulse. Solid by default so reduced-motion users still see the cursor.
+   The blink is the ONE intentional infinite loop on the page. */
 @keyframes terminal-blink {
   0%,
   49% {
@@ -21,6 +27,6 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .terminal-cursor {
-    animation: terminal-blink 1.1s step-end infinite;
+    animation: terminal-blink 1.05s step-end infinite;
   }
 }

@@ -1,10 +1,15 @@
 import { Hero } from './sections/Hero'
+import { CommandPalette } from './components/CommandPalette'
 
 function App() {
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary font-sans antialiased">
-      <Hero />
-    </main>
+    <>
+      <main className="min-h-screen bg-bg-base text-text-paper font-sans antialiased">
+        <Hero />
+      </main>
+      {/* Mounted once so ⌘K / Ctrl+K opens the palette anywhere on the page. */}
+      <CommandPalette />
+    </>
   )
 }
 

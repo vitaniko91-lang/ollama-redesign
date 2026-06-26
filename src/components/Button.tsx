@@ -4,15 +4,16 @@ import { cx } from '../lib/cx'
 type Variant = 'primary' | 'outline' | 'ghost'
 
 const variantClasses: Record<Variant, string> = {
-  primary: 'bg-white text-black',
-  outline: 'border border-border-card text-white hover:border-accent-green',
-  ghost: 'text-text-muted hover:text-white',
+  // Paper-white on charcoal — the one high-contrast "do this now" target.
+  primary: 'bg-white text-black hover:bg-text-paper active:scale-[0.98]',
+  outline: 'border border-line text-text-paper hover:border-line-amber active:scale-[0.98]',
+  ghost: 'text-text-muted hover:text-text-paper',
 }
 
 const baseClasses =
   'inline-flex items-center justify-center gap-2 rounded px-6 py-3 text-sm font-semibold ' +
-  'transition-colors duration-200 focus-visible:outline focus-visible:outline-2 ' +
-  'focus-visible:outline-accent-green outline-offset-2'
+  'transition-[transform,background-color,border-color,color] duration-150 ease-out ' +
+  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2'
 
 type ButtonProps = {
   children: ReactNode

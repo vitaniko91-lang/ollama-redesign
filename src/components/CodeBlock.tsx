@@ -19,18 +19,18 @@ export function CodeBlock({ code, prompt = true, multiline, className }: CodeBlo
   return (
     <div
       className={cx(
-        'flex items-start gap-4 rounded-xl border border-border-card bg-bg-elevated px-4 py-3',
+        'flex items-start gap-4 rounded-xl border border-line bg-bg-inset px-4 py-3',
         className,
       )}
     >
       <pre
         className={cx(
-          'min-w-0 flex-1 overflow-x-auto font-mono text-sm leading-relaxed text-text-primary',
+          'min-w-0 flex-1 overflow-x-auto font-mono text-sm leading-relaxed text-text-paper',
           isMultiline ? 'whitespace-pre' : 'whitespace-pre-wrap',
         )}
       >
         <code>
-          {!isMultiline && prompt && <span className="select-none text-text-dim">$ </span>}
+          {!isMultiline && prompt && <span className="select-none text-accent-amber">$ </span>}
           {code}
         </code>
       </pre>
@@ -42,14 +42,14 @@ export function CodeBlock({ code, prompt = true, multiline, className }: CodeBlo
         }}
         aria-label="Copy command"
         className={cx(
-          'shrink-0 rounded p-1.5 text-text-muted transition-colors duration-200',
-          'hover:text-text-primary focus-visible:outline focus-visible:outline-2',
-          'focus-visible:outline-accent-green outline-offset-2',
+          'shrink-0 rounded p-1.5 text-text-muted transition-colors duration-150',
+          'hover:text-text-paper focus-visible:outline focus-visible:outline-2',
+          'focus-visible:outline-accent-amber outline-offset-2',
         )}
       >
         <Icon
           name={copied ? 'lucide:check' : 'lucide:copy'}
-          className={cx('h-4 w-4', copied && 'text-accent-green')}
+          className={cx('h-4 w-4', copied && 'text-accent-amber')}
         />
       </button>
     </div>

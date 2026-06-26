@@ -2,12 +2,12 @@ import type { ReactNode } from 'react'
 import { cx } from '../lib/cx'
 import { Container } from './Container'
 
-type Background = 'primary' | 'elevated' | 'invert'
+type Background = 'base' | 'raised' | 'invert'
 
 const bgClasses: Record<Background, string> = {
-  primary: 'bg-bg-primary',
-  elevated: 'bg-bg-elevated',
-  invert: 'bg-white text-black',
+  base: 'bg-bg-base',
+  raised: 'bg-bg-raised',
+  invert: 'bg-text-paper text-bg-base',
 }
 
 type SectionProps = {

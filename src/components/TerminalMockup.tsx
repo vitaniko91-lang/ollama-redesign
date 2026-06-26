@@ -1,27 +1,27 @@
 import { cx } from '../lib/cx'
 
 /**
- * Static visual of an interactive `ollama run` session — the hero's signature
- * element. The only motion is an authentic step-end cursor blink (see
- * `.terminal-cursor` in index.css), which is suppressed under
- * `prefers-reduced-motion`. Colors are intentionally limited to the brand's
- * functional roles: green = command / success, amber = in-progress.
+ * Static visual of an `ollama run` session, in the Living Terminal palette.
+ * The only motion is an authentic step-end cursor blink (see `.terminal-cursor`
+ * in index.css), suppressed under `prefers-reduced-motion`. Colour is the
+ * duotone signature: amber = prompts / commands / in-progress, paper = output.
+ * (The hero uses the animated `LivingTerminal`; this is the static variant.)
  */
 export function TerminalMockup({ className }: { className?: string }) {
   return (
     <div
       className={cx(
-        'overflow-hidden rounded-xl border border-border-card bg-bg-elevated',
-        'shadow-[0_25px_50px_rgba(0,0,0,0.25)]',
+        'overflow-hidden rounded-xl border border-line bg-bg-raised',
+        'shadow-[0_25px_50px_rgba(0,0,0,0.35)]',
         className,
       )}
     >
       {/* Title bar */}
-      <div className="flex items-center border-b border-border-subtle px-4 py-3">
+      <div className="flex items-center border-b border-line px-4 py-3">
         <span className="flex gap-2" aria-hidden>
-          <span className="h-3 w-3 rounded-full bg-white/15" />
-          <span className="h-3 w-3 rounded-full bg-white/15" />
-          <span className="h-3 w-3 rounded-full bg-white/15" />
+          <span className="h-3 w-3 rounded-full bg-text-dim/40" />
+          <span className="h-3 w-3 rounded-full bg-text-dim/40" />
+          <span className="h-3 w-3 rounded-full bg-text-dim/40" />
         </span>
         <span className="ml-3 font-mono text-xs text-text-dim">ollama — zsh</span>
       </div>
@@ -29,23 +29,20 @@ export function TerminalMockup({ className }: { className?: string }) {
       {/* Session body */}
       <div className="space-y-1.5 px-5 py-5 font-mono text-sm leading-relaxed">
         <p>
-          <span className="select-none text-text-dim">$ </span>
-          <span className="text-text-primary">ollama run </span>
-          <span className="text-accent-green">llama3.2</span>
-        </p>
-        <p className="text-accent-amber">
-          <span aria-hidden>⠹ </span>pulling manifest
+          <span className="select-none text-accent-amber">$ </span>
+          <span className="text-text-paper">ollama run </span>
+          <span className="text-accent-amber">llama3.2</span>
         </p>
         <p className="text-text-muted">
-          <span className="text-accent-green" aria-hidden>
+          <span className="text-accent-amber" aria-hidden>
             ✓{' '}
           </span>
           success
         </p>
 
         <p className="pt-3">
-          <span className="select-none text-accent-green">{'>>> '}</span>
-          <span className="text-text-primary">What can you run locally?</span>
+          <span className="select-none text-accent-amber">{'>>> '}</span>
+          <span className="text-text-paper">What can you run locally?</span>
         </p>
         <p className="text-text-muted">
           Any open model — Llama, Mistral, Gemma,
@@ -54,10 +51,10 @@ export function TerminalMockup({ className }: { className?: string }) {
         </p>
 
         <p className="pt-2">
-          <span className="select-none text-accent-green">{'>>> '}</span>
+          <span className="select-none text-accent-amber">{'>>> '}</span>
           <span
             aria-hidden
-            className="terminal-cursor inline-block h-4 w-2 translate-y-[2px] bg-accent-green"
+            className="terminal-cursor inline-block h-4 w-2 translate-y-[2px] bg-accent-amber"
           />
         </p>
       </div>
