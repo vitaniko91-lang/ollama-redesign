@@ -10,8 +10,15 @@ describe('App', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders the primary download CTA', () => {
+  it('renders download CTAs (hero + closing block)', () => {
     render(<App />)
-    expect(screen.getByRole('link', { name: /download/i })).toBeInTheDocument()
+    // The hero CTA scrolls to the closing block; the closing block is the
+    // download destination — both expose an accessible "Download" link.
+    expect(screen.getAllByRole('link', { name: /download/i }).length).toBeGreaterThanOrEqual(2)
+  })
+
+  it('carries the concept-redesign disclaimer in the footer', () => {
+    render(<App />)
+    expect(screen.getByText(/not affiliated with ollama/i)).toBeInTheDocument()
   })
 })

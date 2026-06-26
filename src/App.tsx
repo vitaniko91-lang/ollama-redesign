@@ -4,6 +4,8 @@ import { HowItWorks } from './sections/HowItWorks'
 import { Models } from './sections/Models'
 import { Features } from './sections/Features'
 import { DevExperience } from './sections/DevExperience'
+import { CTA } from './sections/CTA'
+import { Footer } from './sections/Footer'
 import { CommandPalette } from './components/CommandPalette'
 
 function App() {
@@ -16,7 +18,10 @@ function App() {
         <Models />
         <Features />
         <DevExperience />
+        <CTA />
       </main>
+      {/* Terminal footer — sibling of <main>, carries the concept-redesign disclaimer. */}
+      <Footer />
       {/* Mounted once so ⌘K / Ctrl+K opens the palette anywhere on the page. */}
       <CommandPalette />
     </>
