@@ -143,6 +143,11 @@ function StepCard({ step, armed, revealed, description, accent, onDone }: StepCa
               className={cx('h-4 w-4', copied && 'text-accent-amber')}
             />
           </button>
+
+          {/* Success is otherwise only the icon swap — announce it politely. */}
+          <span role="status" aria-live="polite" className="sr-only">
+            {copied ? 'Copied' : ''}
+          </span>
         </div>
 
         {/* Output — a shell comment describing what the command does. Space is

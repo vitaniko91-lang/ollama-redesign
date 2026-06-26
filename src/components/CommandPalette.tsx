@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Command } from 'cmdk'
 import { Icon } from './Icon'
 import { useCopyToClipboard } from '../lib/useCopyToClipboard'
@@ -22,6 +22,23 @@ type Cmd = {
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
   const { copy } = useCopyToClipboard()
+  // The element focused when the palette opened — restored on close so keyboard
+  // focus returns to the trigger (the ⌘K chip / hero button) rather than <body>.
+  const triggerRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (open) {
+      triggerRef.current = document.activeElement as HTMLElement | null
+      return
+    }
+    const el = triggerRef.current
+    if (!el) return
+    // Defer past the dialog's own close-focus handling, then restore.
+    const id = requestAnimationFrame(() => {
+      if (el.isConnected && typeof el.focus === 'function') el.focus()
+    })
+    return () => cancelAnimationFrame(id)
+  }, [open])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -78,9 +95,9 @@ export function CommandPalette() {
         </span>
         <Command.Input
           placeholder="Type a command or search…"
-          className="h-12 w-full bg-transparent font-mono text-sm text-text-paper outline-none placeholder:text-text-dim"
+          className="h-12 w-full bg-transparent font-mono text-sm text-text-paper outline-none placeholder:text-text-muted"
         />
-        <kbd className="rounded border border-line px-1.5 py-0.5 font-mono text-[10px] text-text-dim">
+        <kbd className="rounded border border-line px-1.5 py-0.5 font-mono text-[10px] text-text-muted">
           ESC
         </kbd>
       </div>
@@ -91,7 +108,7 @@ export function CommandPalette() {
         </Command.Empty>
         <Command.Group
           heading="Actions"
-          className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-text-dim"
+          className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.18em] [&_[cmdk-group-heading]]:text-text-muted"
         >
           {commands.map((c) => (
             <Command.Item

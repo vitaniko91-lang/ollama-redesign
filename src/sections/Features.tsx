@@ -47,7 +47,7 @@ export function Features() {
 
         {/* Man-page section label, mirroring the real `ollama --help` output. */}
         <Reveal delay={0.05} className="mt-8 lg:mt-10">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-text-dim">Flags</p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Flags</p>
         </Reveal>
 
         {/* Hairline flags table. `gap-px` over a `bg-line` track draws the 1px

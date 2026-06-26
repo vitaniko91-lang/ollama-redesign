@@ -65,7 +65,7 @@ export function Hero() {
               <kbd className="font-mono text-accent-amber">⌘K</kbd>
               command menu
             </button>
-            <p className="font-mono text-xs text-text-dim">macOS · Linux · Windows</p>
+            <p className="font-mono text-xs text-text-muted">macOS · Linux · Windows</p>
           </div>
         </div>
 

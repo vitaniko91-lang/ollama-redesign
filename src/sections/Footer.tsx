@@ -58,7 +58,7 @@ export function Footer() {
               <span aria-hidden className="select-none text-accent-amber">
                 #{' '}
               </span>
-              <span className="text-text-dim">
+              <span className="text-text-muted">
                 concept redesign · not affiliated with ollama
               </span>
             </p>
@@ -68,7 +68,7 @@ export function Footer() {
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             {GROUPS.map((group) => (
               <div key={group.heading}>
-                <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
                   {group.heading}
                 </h2>
                 <ul role="list" className="mt-4 space-y-2.5">
@@ -93,7 +93,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar — build credit + copyright. */}
-        <div className="mt-14 flex flex-col gap-3 border-t border-line pt-6 font-mono text-xs text-text-dim sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-line pt-6 font-mono text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             designed &amp; built by{' '}
             <a

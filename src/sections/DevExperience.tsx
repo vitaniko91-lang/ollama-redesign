@@ -104,7 +104,7 @@ function Panel({
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-bg-raised">
       <header className="flex items-center justify-between gap-3 border-b border-line px-4 py-2.5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-dim">{role}</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">{role}</span>
         <span className="font-mono text-xs font-medium text-accent-amber">{status}</span>
       </header>
       <div className="flex-1 p-4">{children}</div>

@@ -12,9 +12,17 @@ import { CommandPalette } from './components/CommandPalette'
 function App() {
   return (
     <>
+      {/* Bypass-blocks: a keyboard-only skip link that reveals on focus and
+          jumps past the nav straight to the main content (WCAG 2.4.1). */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:border focus:border-line-amber focus:bg-bg-raised focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-text-paper focus:outline focus:outline-2 focus:outline-accent-amber focus:outline-offset-2"
+      >
+        Skip to content
+      </a>
       {/* Sticky session header — transparent over the hero, hairline + blur on scroll. */}
       <Nav />
-      <main className="min-h-screen bg-bg-base text-text-paper font-sans antialiased">
+      <main id="main" className="min-h-screen bg-bg-base text-text-paper font-sans antialiased">
         <Hero />
         <ProofBar />
         <HowItWorks />

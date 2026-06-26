@@ -50,6 +50,8 @@ export function CodeBlock({ code, prompt = true, multiline, wrap, className }: C
         onClick={() => {
           void copy(code)
         }}
+        // Name stays "Copy command" (success is announced via the live region
+        // below, not by renaming the control) so the label reads consistently.
         aria-label="Copy command"
         className={cx(
           'shrink-0 rounded p-1.5 text-text-muted transition-colors duration-150',
@@ -62,6 +64,12 @@ export function CodeBlock({ code, prompt = true, multiline, wrap, className }: C
           className={cx('h-4 w-4', copied && 'text-accent-amber')}
         />
       </button>
+
+      {/* The copy success is otherwise conveyed only by the icon swap. This
+          polite live region announces it to screen-reader users. */}
+      <span role="status" aria-live="polite" className="sr-only">
+        {copied ? 'Copied' : ''}
+      </span>
     </div>
   )
 }

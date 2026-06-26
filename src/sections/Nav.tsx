@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../components/Button'
 import { Icon } from '../components/Icon'
 import { openCommandPalette } from '../lib/commandPalette'
@@ -35,6 +35,7 @@ const flagLinkClasses =
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   // Scrolled state — cheap passive listener, toggles one boolean (class swap).
   useEffect(() => {
@@ -48,7 +49,12 @@ export function Nav() {
   useEffect(() => {
     if (!menuOpen) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        // Return focus to the hamburger so keyboard users aren't dropped on
+        // <body> when the sheet (and any focused link inside it) disappears.
+        hamburgerRef.current?.focus()
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -97,7 +103,7 @@ export function Nav() {
             type="button"
             onClick={openCommandPalette}
             aria-label="Open command menu"
-            className="inline-flex items-center gap-1 rounded border border-line px-2 py-1.5 font-mono text-xs text-text-dim transition-colors duration-150 hover:border-line-amber hover:text-text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2"
+            className="inline-flex items-center gap-1 rounded border border-line px-2 py-1.5 font-mono text-xs text-text-muted transition-colors duration-150 hover:border-line-amber hover:text-text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2"
           >
             <span aria-hidden>⌘</span>
             <span aria-hidden>K</span>
@@ -110,6 +116,7 @@ export function Nav() {
 
           {/* Hamburger — mobile only. */}
           <button
+            ref={hamburgerRef}
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}

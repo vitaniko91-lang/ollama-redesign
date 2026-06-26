@@ -143,6 +143,11 @@ function ModelCard({ model }: { model: Model }) {
           )}
         />
       </button>
+
+      {/* Success is otherwise only the icon swap — announce it politely to AT. */}
+      <span role="status" aria-live="polite" className="sr-only">
+        {copied ? `Copied: ollama run ${slug}` : ''}
+      </span>
     </article>
   )
 }
