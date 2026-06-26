@@ -22,6 +22,10 @@ describe('Footer', () => {
   it('renders grouped path links', () => {
     render(<Footer />)
     expect(screen.getByRole('link', { name: /models/i })).toHaveAttribute('href', '#models')
-    expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute('href', '#github')
+    // github now links out to the concept-redesign source repo (live project link).
+    expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute(
+      'href',
+      'https://github.com/vitaniko91-lang/ollama-redesign',
+    )
   })
 })

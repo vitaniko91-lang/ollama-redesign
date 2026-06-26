@@ -32,7 +32,11 @@ const GROUPS: FooterGroup[] = [
   {
     heading: 'Community',
     links: [
-      { name: 'github', href: '#github' },
+      {
+        name: 'github',
+        href: 'https://github.com/vitaniko91-lang/ollama-redesign',
+        label: 'View this concept redesign on GitHub',
+      },
       { name: 'discord', href: '#' },
     ],
   },
