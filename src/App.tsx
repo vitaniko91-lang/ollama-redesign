@@ -1,3 +1,4 @@
+import { Nav } from './sections/Nav'
 import { Hero } from './sections/Hero'
 import { ProofBar } from './sections/ProofBar'
 import { HowItWorks } from './sections/HowItWorks'
@@ -11,6 +12,8 @@ import { CommandPalette } from './components/CommandPalette'
 function App() {
   return (
     <>
+      {/* Sticky session header — transparent over the hero, hairline + blur on scroll. */}
+      <Nav />
       <main className="min-h-screen bg-bg-base text-text-paper font-sans antialiased">
         <Hero />
         <ProofBar />
