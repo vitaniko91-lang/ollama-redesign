@@ -1,6 +1,7 @@
 import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
 import { TypedCommand } from '../components/TypedCommand'
+import { MarkerTick } from '../components/MarkerTick'
 import { Icon } from '../components/Icon'
 import { useCopyToClipboard } from '../lib/useCopyToClipboard'
 import { models } from '../data/models'
@@ -38,33 +39,56 @@ export function Models() {
           lives here for heading-navigation and the document outline. */}
       <h2 className="sr-only">Model library</h2>
 
-      <TypedCommand command="ollama list" prompt="$ " startOnView speed={42}>
-        <Reveal className="mt-4">
-          <p className="max-w-xl text-base leading-relaxed text-text-muted">
-            Pull any of these with one command —{' '}
-            <span className="text-text-paper">the library the homepage never shows you.</span>
+      {/* Asymmetric header — the typed marker + blurb on the left, weighted
+          against an oversized count on the right. The number is the honest
+          output of `ollama list`: how many models this redesign actually puts
+          on the page (the original homepage shows zero), so the structure
+          encodes real information rather than decorating the section. */}
+      <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="relative">
+          <MarkerTick />
+          <TypedCommand command="ollama list" prompt="$ " startOnView speed={42}>
+            <Reveal className="mt-4">
+              <p className="max-w-md text-base leading-relaxed text-text-muted">
+                Pull any of these with one command —{' '}
+                <span className="text-text-paper">the library the homepage never shows you.</span>
+              </p>
+            </Reveal>
+          </TypedCommand>
+        </div>
+
+        <Reveal delay={0.1} className="shrink-0">
+          <p aria-hidden className="flex items-end justify-start gap-3 sm:justify-end">
+            <span className="font-mono text-[4.5rem] font-semibold leading-[0.85] tracking-[-0.05em] text-text-paper sm:text-[6rem] lg:text-[7rem]">
+              {models.length}
+            </span>
+            <span className="mb-2 font-mono text-xs uppercase leading-tight tracking-[0.2em] text-text-muted">
+              models
+              <br />
+              in the registry
+            </span>
           </p>
         </Reveal>
+      </div>
 
-        {/* role="list" survives Safari stripping list semantics under a grid
-            display. Each <li> is the grid item; the h-full chain below keeps
-            sibling cards equal height regardless of blurb length. */}
-        <ul
-          role="list"
-          aria-label="Available models"
-          className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-10 lg:grid-cols-3"
-        >
-          {models.map((model, i) => (
-            <li key={model.name} className="h-full">
-              {/* One gentle, capped stagger across the grid — a single intended
-                  sequence, not stagger-spam. */}
-              <Reveal delay={Math.min(i * 0.05, 0.25)} className="h-full">
-                <ModelCard model={model} />
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </TypedCommand>
+      {/* role="list" survives Safari stripping list semantics under a grid
+          display. Each <li> is the grid item; the h-full chain below keeps
+          sibling cards equal height regardless of blurb length. */}
+      <ul
+        role="list"
+        aria-label="Available models"
+        className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3"
+      >
+        {models.map((model, i) => (
+          <li key={model.name} className="h-full">
+            {/* One gentle, capped stagger across the grid — a single intended
+                sequence, not stagger-spam. */}
+            <Reveal delay={Math.min(i * 0.05, 0.25)} className="h-full">
+              <ModelCard model={model} />
+            </Reveal>
+          </li>
+        ))}
+      </ul>
     </Section>
   )
 }

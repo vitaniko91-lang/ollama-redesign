@@ -3,6 +3,7 @@ import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
 import { StreamText } from '../components/StreamText'
 import { TypedCommand } from '../components/TypedCommand'
+import { MarkerTick } from '../components/MarkerTick'
 import { Icon } from '../components/Icon'
 import { useCopyToClipboard } from '../lib/useCopyToClipboard'
 import { usePrefersReducedMotion } from '../lib/usePrefersReducedMotion'
@@ -36,7 +37,8 @@ export function HowItWorks() {
 
   return (
     <Section id="how-it-works">
-      <div className="max-w-2xl">
+      <div className="relative max-w-2xl">
+        <MarkerTick />
         {/* Marker reads as the next line of the session — a real <h2> for
             heading navigation, dressed as a typed shell comment. */}
         <h2 className="font-mono text-xl font-medium leading-snug tracking-tight text-text-paper sm:text-2xl lg:text-3xl">

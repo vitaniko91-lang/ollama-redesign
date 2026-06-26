@@ -8,23 +8,25 @@ import { openCommandPalette } from '../lib/commandPalette'
 
 export function Hero() {
   return (
-    <Section full bg="base" className="relative overflow-hidden">
-      {/* Craft background — full-bleed, decorative. Single amber glow bleeding
-          off the top-right + a barely-there scanline. Hidden from AT. */}
+    <Section className="relative overflow-hidden">
+      {/* Craft warmth — a single amber glow bleeding off the top-right, decorative
+          and static. The ambient texture now comes from the global token field
+          behind this transparent section, so no local scanline here. Hidden from AT. */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -right-40 -top-48 h-[620px] w-[620px] rounded-full bg-accent-amber opacity-[0.06] blur-[130px]" />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(to bottom, rgba(236,232,221,0.02) 0px, rgba(236,232,221,0.02) 1px, transparent 1px, transparent 3px)',
-          }}
-        />
       </div>
 
-      <div className="relative grid items-center gap-12 lg:min-h-[76vh] lg:grid-cols-[52fr_48fr] lg:gap-16">
+      <div className="relative grid items-center gap-12 lg:min-h-[78vh] lg:grid-cols-[53fr_47fr] lg:gap-12">
+        {/* The character-grid line the session sits on — a faint vertical rule at
+            the column seam that the living terminal deliberately breaks across,
+            so the hero reads as composed, not boxed. Desktop only. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-4 left-[53%] hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-line to-transparent lg:block"
+        />
+
         {/* Left — message + actions */}
-        <div className="max-w-xl">
+        <div className="relative max-w-xl">
           <p className="flex items-center gap-2 font-mono text-xs tracking-tight text-text-muted">
             <span className="select-none text-accent-amber">{'>'}</span>
             ollama --help
@@ -36,7 +38,7 @@ export function Hero() {
             highlight="open"
             cursor
             speed={36}
-            className="mt-5 font-mono text-[2rem] font-semibold leading-[1.06] tracking-[-0.02em] text-text-paper sm:text-[2.75rem] lg:text-[3.5rem]"
+            className="mt-5 font-mono text-[2.1rem] font-semibold leading-[1.02] tracking-[-0.03em] text-text-paper sm:text-[2.9rem] lg:text-[3.75rem] xl:text-[4rem]"
           />
 
           <p className="mt-6 max-w-[480px] text-base leading-relaxed text-text-muted">
@@ -69,8 +71,10 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right — the living terminal */}
-        <div className="lg:pl-4">
+        {/* Right — the living terminal. Pulled left across the grid seam and
+            lifted, so it overlaps the rule rather than sitting politely beside
+            it; z-10 keeps it (and its shadow) above the line and field. */}
+        <div className="relative z-10 lg:-ml-10 lg:-mt-8">
           <LivingTerminal />
         </div>
       </div>

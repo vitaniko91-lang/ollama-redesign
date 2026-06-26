@@ -1,6 +1,7 @@
 import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
 import { TypedCommand } from '../components/TypedCommand'
+import { MarkerTick } from '../components/MarkerTick'
 import { Icon } from '../components/Icon'
 import { features } from '../data/features'
 import type { Feature } from '../data/features'
@@ -37,7 +38,9 @@ export function Features() {
           carries the section in the heading outline. */}
       <h2 className="sr-only">Features</h2>
 
-      <TypedCommand command="ollama --help" prompt="$ " startOnView speed={42}>
+      <div className="relative">
+        <MarkerTick />
+        <TypedCommand command="ollama --help" prompt="$ " startOnView speed={42}>
         <Reveal className="mt-4">
           <p className="max-w-xl text-base leading-relaxed text-text-muted">
             Everything the runtime does,{' '}
@@ -69,7 +72,8 @@ export function Features() {
             </li>
           ))}
         </ul>
-      </TypedCommand>
+        </TypedCommand>
+      </div>
     </Section>
   )
 }

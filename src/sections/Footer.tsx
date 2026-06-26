@@ -40,7 +40,7 @@ const GROUPS: FooterGroup[] = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-bg-base">
+    <footer className="border-t border-line">
       <Container className="py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.1fr_1.9fr]">
           {/* Brand + disclaimer */}

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Section } from '../components/Section'
 import { Reveal } from '../components/Reveal'
 import { TypedCommand } from '../components/TypedCommand'
+import { MarkerTick } from '../components/MarkerTick'
 import { CodeBlock } from '../components/CodeBlock'
 import { StreamText } from '../components/StreamText'
 import { Icon } from '../components/Icon'
@@ -47,13 +48,15 @@ export function DevExperience() {
           carries the section in the heading outline. */}
       <h2 className="sr-only">OpenAI-compatible API</h2>
 
-      <TypedCommand
-        command="curl http://localhost:11434/api/chat"
-        prompt="$ "
-        accent="/api/chat"
-        startOnView
-        speed={36}
-      >
+      <div className="relative">
+        <MarkerTick />
+        <TypedCommand
+          command="curl http://localhost:11434/api/chat"
+          prompt="$ "
+          accent="/api/chat"
+          startOnView
+          speed={36}
+        >
         <Reveal className="mt-4">
           <p className="max-w-xl text-base leading-relaxed text-text-muted">
             Drop-in REST API. Point your existing OpenAI client at localhost —{' '}
@@ -86,7 +89,8 @@ export function DevExperience() {
             <ResponsePanel />
           </Reveal>
         </div>
-      </TypedCommand>
+        </TypedCommand>
+      </div>
     </Section>
   )
 }

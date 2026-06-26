@@ -8,6 +8,7 @@ import { DevExperience } from './sections/DevExperience'
 import { CTA } from './sections/CTA'
 import { Footer } from './sections/Footer'
 import { CommandPalette } from './components/CommandPalette'
+import { TokenStreamField } from './components/TokenStreamField'
 
 function App() {
   return (
@@ -20,19 +21,32 @@ function App() {
       >
         Skip to content
       </a>
-      {/* Sticky session header — transparent over the hero, hairline + blur on scroll. */}
-      <Nav />
-      <main id="main" className="min-h-screen bg-bg-base text-text-paper font-sans antialiased">
-        <Hero />
-        <ProofBar />
-        <HowItWorks />
-        <Models />
-        <Features />
-        <DevExperience />
-        <CTA />
-      </main>
-      {/* Terminal footer — sibling of <main>, carries the concept-redesign disclaimer. */}
-      <Footer />
+
+      {/* Signature ambient layer — the living token field, painted once behind
+          everything (z-0). The page's charcoal base comes from <body>; this sits
+          above it and below the content layer, so the field breathes through the
+          transparent gaps between the floating panels. */}
+      <TokenStreamField />
+
+      {/* Content layer — lifted above the field. Sections are transparent; only
+          the panels that hold text carry a solid bg, so they read as windows
+          floating over the live session. */}
+      <div className="relative z-10">
+        {/* Sticky session header — transparent over the hero, hairline + blur on scroll. */}
+        <Nav />
+        <main id="main" className="min-h-screen text-text-paper font-sans antialiased">
+          <Hero />
+          <ProofBar />
+          <HowItWorks />
+          <Models />
+          <Features />
+          <DevExperience />
+          <CTA />
+        </main>
+        {/* Terminal footer — carries the concept-redesign disclaimer. */}
+        <Footer />
+      </div>
+
       {/* Mounted once so ⌘K / Ctrl+K opens the palette anywhere on the page. */}
       <CommandPalette />
     </>
