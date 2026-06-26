@@ -2,9 +2,16 @@ import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import App from './App'
 
-describe('App scaffold', () => {
-  it('renders the placeholder copy', () => {
+describe('App', () => {
+  it('renders the hero headline', () => {
     render(<App />)
-    expect(screen.getByText(/scaffold ready/i)).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 1, name: /run any open model/i }),
+    ).toBeInTheDocument()
+  })
+
+  it('renders the primary download CTA', () => {
+    render(<App />)
+    expect(screen.getByRole('link', { name: /download/i })).toBeInTheDocument()
   })
 })
