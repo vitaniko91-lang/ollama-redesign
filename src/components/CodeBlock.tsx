@@ -9,12 +9,20 @@ type CodeBlockProps = {
   prompt?: boolean
   /** Force multi-line rendering. Auto-detected from newlines when omitted. */
   multiline?: boolean
+  /**
+   * Wrap long content instead of horizontal-scrolling it. Defaults to wrapping
+   * single-line commands (so a one-line `curl … | sh` never clips on narrow
+   * screens) and scrolling genuinely multi-line code (which must keep its
+   * indentation intact).
+   */
+  wrap?: boolean
   className?: string
 }
 
-export function CodeBlock({ code, prompt = true, multiline, className }: CodeBlockProps) {
+export function CodeBlock({ code, prompt = true, multiline, wrap, className }: CodeBlockProps) {
   const { copied, copy } = useCopyToClipboard()
   const isMultiline = multiline ?? code.includes('\n')
+  const shouldWrap = wrap ?? !isMultiline
 
   return (
     <div
@@ -25,8 +33,10 @@ export function CodeBlock({ code, prompt = true, multiline, className }: CodeBlo
     >
       <pre
         className={cx(
-          'min-w-0 flex-1 overflow-x-auto font-mono text-sm leading-relaxed text-text-paper',
-          isMultiline ? 'whitespace-pre' : 'whitespace-pre-wrap',
+          'min-w-0 flex-1 font-mono text-sm leading-relaxed text-text-paper',
+          // Wrap single-line commands (break the long install URL rather than
+          // clip it); let real multi-line code scroll to preserve indentation.
+          shouldWrap ? 'whitespace-pre-wrap break-words' : 'overflow-x-auto whitespace-pre',
         )}
       >
         <code>

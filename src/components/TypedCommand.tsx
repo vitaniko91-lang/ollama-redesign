@@ -74,7 +74,10 @@ export function TypedCommand({
 
   return (
     <div ref={ref} className={className}>
-      <div className="font-mono text-sm leading-relaxed" aria-label={`${prompt}${command}`}>
+      <div
+        className="font-mono text-sm leading-relaxed break-words"
+        aria-label={`${prompt}${command}`}
+      >
         <span aria-hidden>
           <span className="select-none text-accent-amber">{prompt}</span>
           <span className="text-text-paper">{base}</span>
