@@ -1,32 +1,64 @@
-# React + TypeScript + Vite
+# Ollama — concept redesign
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A concept redesign of [Ollama](https://ollama.com)'s landing page, art-directed
+around a **"Living Terminal"** idea: the whole page behaves like one calm,
+running shell session.
 
-Currently, two official plugins are available:
+**Live:** https://vitaniko91-lang.github.io/ollama-redesign/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> ⚠️ Concept redesign — **not affiliated with Ollama**. Built as a portfolio
+> piece to explore an alternative art direction, not an official product page.
 
-## React Compiler
+![Ollama concept redesign — Living Terminal](./public/og.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Why
 
-## Expanding the Oxlint configuration
+The original landing leans on a familiar dev-tool template: it never really
+**showcases the models** you can actually run, the primary CTA is soft, and the
+visual language is flat. This redesign answers those three gaps:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- **Model showcase** — a dedicated, scannable Models section instead of burying
+  the library a click away.
+- **A confident CTA** — install is foregrounded as a single copy-able command
+  plus a clear Download path.
+- **A point of view, not a template** — a bespoke amber-on-charcoal terminal
+  aesthetic in Geist Mono, set against an ambient **Token Stream Field**
+  background (tokens drift past like a model decoding in the background), with a
+  `⌘K` command palette so the page itself feels like a CLI you can drive.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Tech stack
+
+- **React + TypeScript**
+- **Vite** (build/dev)
+- **Tailwind CSS** (design tokens + styling)
+- **motion** (scroll reveals, stream typing)
+- **cmdk** (the `⌘K` command palette)
+- **@iconify/react** (icons)
+- **Vitest + Testing Library** (component tests)
+
+## Run locally
+
+```bash
+npm install
+npm run dev      # start the dev server (Vite)
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Other scripts:
+
+```bash
+npm run build    # type-check + production build → dist/
+npm run preview  # preview the production build
+npm run test     # run the Vitest suite
+npm run lint     # oxlint
+```
+
+## Deploy
+
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds with
+Node 20 and publishes `dist/` to **GitHub Pages** via the official
+`actions/deploy-pages` flow. Vite's `base` is set to `'./'` so the single-page
+app resolves its hashed assets from the `/ollama-redesign/` project subpath.
+
+---
+
+Designed & built by Vitalina Nikulina. Concept work — not affiliated with Ollama.
