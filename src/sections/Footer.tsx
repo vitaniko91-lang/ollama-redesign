@@ -101,14 +101,14 @@ export function Footer() {
           <p>
             designed &amp; built by{' '}
             <a
-              href="#"
+              href="https://vitaniko91-lang.github.io/"
               className="text-text-muted underline-offset-4 transition-colors duration-150 hover:text-accent-amber hover:underline focus-visible:text-accent-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2"
             >
               Vitalina Nikulina
             </a>
             <span aria-hidden> · </span>
             <a
-              href="#"
+              href="https://x.com/VitalinaN96916"
               aria-label="Vitalina Nikulina on X"
               className="text-text-muted underline-offset-4 transition-colors duration-150 hover:text-accent-amber hover:underline focus-visible:text-accent-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2"
             >
@@ -116,7 +116,7 @@ export function Footer() {
             </a>
             <span aria-hidden> · </span>
             <a
-              href="#"
+              href="https://vitaniko91-lang.github.io/"
               aria-label="Vitalina Nikulina — portfolio site"
               className="text-text-muted underline-offset-4 transition-colors duration-150 hover:text-accent-amber hover:underline focus-visible:text-accent-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent-amber outline-offset-2"
             >
